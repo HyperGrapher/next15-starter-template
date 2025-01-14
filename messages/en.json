@@ -1,0 +1,35 @@
+{
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "navigation": {
+        "dashboard": "Dashboard"
+    },
+    "auth": {
+        "signin-desc": "Sign in to your account",
+        "signup-desc": "Create your account",
+        "signin": "Sign In",
+        "signup": "Sign Up",
+        "signout": "Sign Out",
+        "register": "Sign Up",
+        "register-message": "New to our platform?",
+        "register-action": "Create an account",
+        "signin-action": "Sign in to existing account",
+        "signin-message": "Already have an account?",
+        "form": {
+            "email": "Email",
+            "password": "Password"
+        }
+    },
+    "home": {
+        "title": "This is English Title",
+        "description": "Description"
+    },
+    "pagination": {
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "footer": {
+        "copyright": "All rights reserved."
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "navigation": {
+        "dashboard": "Dashboard"
+    },
+    "auth": {
+        "signin-desc": "Hesabiniza giris yapin",
+        "signup-desc": "Yeni bir hesap olusturun",
+        "signin": "Giriş Yap",
+        "signup": "Kayit ol",
+        "signout": "Çıkış Yap",
+        "register": "Kayıt Ol",
+        "register-message": "Hesabın yok mu?",
+        "signin-message": "Zaten bir hesabın var mı?",
+        "register-action": "Hesap olustur",
+        "signin-action": "Hesabiniza giris yapin",
+        "form": {
+            "email": "E-posta",
+            "password": "Parola"
+        }
+    },
+    "home": {
+        "title": "Turkce uygulama basligi",
+        "description":"uygulama aciklamasi."
+    },
+    "pagination": {
+        "prev": "Önceki",
+        "next": "Sonraki"
+    },
+    "footer": {
+        "copyright": "Tüm hakları saklıdır."
+    }
+}
