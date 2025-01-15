@@ -6,6 +6,7 @@ import { Manrope } from 'next/font/google';
 import { UserProvider } from 'src/server/auth';
 import { getUser } from 'src/server/db/queries';
 import "src/styles/globals.css";
+import { Topbar } from "src/components/Topbar";
 
 export const metadata: Metadata = {
   title: 'Next.js SaaS Starter',
@@ -33,6 +34,7 @@ export default async function RootLayout({
       <body className="min-h-[100dvh]">
         <UserProvider userPromise={userPromise}>
           <NextIntlClientProvider messages={messages}>
+            <Topbar />
             {children}
             <Toaster />
           </NextIntlClientProvider>
