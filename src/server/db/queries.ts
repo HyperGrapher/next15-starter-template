@@ -1,7 +1,7 @@
 import { db } from './index';
 import { User } from '@prisma/client';
 import { cookies } from 'next/headers';
-import { decrypt } from 'src/server/auth/session';
+import { verifyToken } from 'src/server/auth/session';
 
 export async function getUser() {
   const sessionCookie = (await cookies()).get('session');
@@ -9,7 +9,7 @@ export async function getUser() {
     return null;
   }
 
-  const sessionData = await decrypt(sessionCookie.value);
+  const sessionData = await verifyToken(sessionCookie.value);
   if (
     !sessionData ||
     !sessionData.user ||

@@ -23,7 +23,7 @@ type SessionData = {
   expires: string;
 };
 
-export async function encrypt(payload: SessionData) {
+export async function signToken(payload: SessionData) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
@@ -31,7 +31,7 @@ export async function encrypt(payload: SessionData) {
     .sign(key);
 }
 
-export async function decrypt(input: string) {
+export async function verifyToken(input: string) {
   const { payload } = await jwtVerify(input, key, {
     algorithms: ['HS256'],
   });
@@ -40,10 +40,8 @@ export async function decrypt(input: string) {
 
 export async function getSession() {
   const session = (await cookies()).get('session')?.value;
-  console.log({ session });
-
   if (!session) return null;
-  return await decrypt(session);
+  return await verifyToken(session);
 }
 const hoursToExpiry = 1;
 export async function setSession(user: User) {
@@ -52,11 +50,11 @@ export async function setSession(user: User) {
     user: { id: user.id! },
     expires: expiresInOneDay.toISOString(),
   };
-  const encryptedSession = await encrypt(session);
+  const encryptedSession = await signToken(session);
   (await cookies()).set('session', encryptedSession, {
     expires: expiresInOneDay,
     httpOnly: true,
     secure: true, // Only over HTTPS
-    sameSite: 'strict', // Prevent CSRF
+    sameSite: 'lax', // Prevent CSRF
   });
 }

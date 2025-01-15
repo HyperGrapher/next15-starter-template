@@ -31,11 +31,14 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {mode === 'signin' ? t('signin-desc') : t('signup-desc')}
         </h2>
-      </div>
+      </div>  const inviteId = searchParams.get('inviteId');
+
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <form className="space-y-6" action={formAction}>
+          <input type="hidden" name="priceId" value={priceId || ''} />
           <input type="hidden" name="redirect" value={redirect || ''} />
+
           <div>
             <Label
               htmlFor="email"
@@ -49,6 +52,7 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
                 name="email"
                 type="email"
                 autoComplete="email"
+                defaultValue={state.email}
                 required
                 maxLength={50}
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-none focus:ring-violet-500 sm:text-sm"

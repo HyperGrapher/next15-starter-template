@@ -47,13 +47,13 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
   });
 
   if (!user) {
-    return { error: 'User not found. Please try again.' };
+    return { error: 'Invalid email or password. Please try again.', email, password };
   }
 
   const isPasswordValid = await comparePasswords(password, user.password);
 
   if (!isPasswordValid) {
-    return { error: 'Incorrect password. Please try again.' };
+    return { error: 'Invalid email or password. Please try again.', email, password };
   }
 
   await Promise.all([
@@ -63,6 +63,7 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
 
   // TODO: redirect user if needed
   const redirectTo = formData.get('redirect') as string | null;
+  
 
   redirect('/');
 });
@@ -82,7 +83,7 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
   });
 
   if (existingUser) {
-    return { error: 'User already exists.' };
+    return { error: 'Failed to create user. Please try again.', email, password};
   }
 
   const passwordHash = await hashPassword(password);
