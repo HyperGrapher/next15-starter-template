@@ -65,7 +65,7 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
   const redirectTo = formData.get('redirect') as string | null;
   
 
-  redirect('/');
+  redirect('/testing');
 });
 
 const signUpSchema = z.object({
@@ -100,10 +100,12 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
     return { error: 'Failed to create user. Please try again.' };
   }
 
-  logActivity(createdUser.id, ActivityType.SIGN_UP);
-  setSession(createdUser);
+  await Promise.all([
+    setSession(createdUser),
+    logActivity(createdUser.id, ActivityType.SIGN_UP),
+  ]);
 
-  redirect('/');
+  redirect('/testing');
 });
 
 export async function signOut() {
