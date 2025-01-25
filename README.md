@@ -37,31 +37,33 @@ pnpm install
 sudo apt update
 sudo apt upgrade
 sudo apt install net-tools unzip
-sudo apt install unzip
 sudo apt install -y postgresql-common
-sudo apt update
 sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 sudo apt install postgresql postgresql-contrib
 
-sudo systemctl start postgresql.service
+# (optional) 
 sudo service postgresql restart
 sudo service postgresql status
 
-# Confirm that PostgreSQL is listening on the correct port (5432):
+# (optional) Confirm that PostgreSQL is listening on the correct port (5432):
 sudo netstat -plnt | grep 5432
 
-# Testing Connection with psql
+# (optional) Testing Connection with psql
 psql -h localhost -U my_user -d db_name -W
 ```
 
 ### Creating database and user
 
+.env file (place you own params): 
 ` DATABASE_URL="postgresql://[my_user]:[password]@localhost:5432/[db_name]?schema=[schema_name]" `
 
 Based on the connection string above, adjust parameters and run commands:
 
 ```sh
 sudo -u postgres psql
+```
+
+```sql
 CREATE DATABASE db_name;
 CREATE USER my_user WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE db_name TO my_user;
@@ -69,7 +71,7 @@ GRANT ALL PRIVILEGES ON DATABASE db_name TO my_user;
 
 ### Run development server
 
-- Create tables by pushing with prisma: `pnpm db:push`
+- Create schema tables by pushing with prisma: `pnpm db:push`
 
 - And run dev server: `pnpm dev`
 

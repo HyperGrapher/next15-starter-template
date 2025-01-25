@@ -18,7 +18,7 @@ const TempAuthComp = () => {
     async function handleSignOut() {
         setUser(null);
         await signOut();
-        router.push('/');
+        router.push(' /');
     }
 
     return (
