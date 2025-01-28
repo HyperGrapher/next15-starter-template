@@ -44,6 +44,9 @@ yarn-error.log*
 # idea files
 .idea
 
+
+/my-notes/
+
 # Playwright
 node_modules/
 /test-results/
