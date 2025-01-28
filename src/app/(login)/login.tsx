@@ -33,8 +33,8 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <form className="space-y-6" action={formAction}>
-          <input type="hidden" name="priceId" value={priceId || ''} />
-          <input type="hidden" name="redirect" value={redirect || ''} />
+          <input type="hidden" name="priceId" value={priceId ?? ''} />
+          <input type="hidden" name="redirect" value={redirect ?? ''} />
 
           <div>
             <Label

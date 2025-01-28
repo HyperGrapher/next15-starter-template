@@ -24,7 +24,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
 
-  let userPromise = getUser();
+  const userPromise = getUser();
 
   const locale = await getLocale();
   const messages = await getMessages();

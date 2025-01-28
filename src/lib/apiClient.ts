@@ -1,6 +1,6 @@
 type ApiClient = <Data>(
     input: RequestInfo | URL,
-    init?: (Omit<RequestInit, "body"> & { body?: object }) | undefined
+    init?: (Omit<RequestInit, "body"> & { body?: object })
   ) => Promise<Data>;
   
   /**

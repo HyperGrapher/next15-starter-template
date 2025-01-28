@@ -27,7 +27,7 @@ async function logActivity(
   const activity = {
     userId,
     action: type,
-    ipAddress: ipAddress || '',
+    ipAddress: ipAddress ?? '',
   };
   await db.activityLog.create({ data: activity });
 }
@@ -37,7 +37,7 @@ const signInSchema = z.object({
   password: z.string().min(8).max(100),
 });
 
-export const signIn = validatedAction(signInSchema, async (data, formData) => {
+export const signIn = validatedAction(signInSchema, async (data, _formData) => {
   const { email, password } = data;
 
   const user = await db.user.findFirst({
@@ -62,7 +62,7 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
   ]);
 
   // TODO: redirect user if needed
-  const redirectTo = formData.get('redirect') as string | null;
+  // const redirectTo = formData.get('redirect') as string | null;
   
 
   redirect('/test');
@@ -73,7 +73,7 @@ const signUpSchema = z.object({
   password: z.string().min(8),
 });
 
-export const signUp = validatedAction(signUpSchema, async (data, formData) => {
+export const signUp = validatedAction(signUpSchema, async (data, _formData) => {
   const { email, password } = data;
 
   const existingUser = await db.user.findFirst({

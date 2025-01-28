@@ -101,7 +101,7 @@ export function LandingPage() {
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
                 Our template provides everything you need to get your SaaS up
-                and running quickly. Don't waste time on boilerplate - focus on
+                and running quickly. Don&apos;t waste time on boilerplate - focus on
                 what makes your product unique.
               </p>
             </div>

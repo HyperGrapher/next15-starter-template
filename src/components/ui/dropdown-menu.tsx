@@ -96,7 +96,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
-  // @ts-ignore // ben ekledim
+  // @ts-expect-error ben ekledim
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
