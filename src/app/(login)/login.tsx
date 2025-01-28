@@ -25,9 +25,6 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
   return (
     <div className="flex min-h-[100dvh] flex-col justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <h2 className="text-3xl font-extrabold text-violet-900">APP-LOGO</h2>
-        </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {mode === 'signin' ? t('signin-desc') : t('signup-desc')}
         </h2>
