@@ -29,7 +29,7 @@ export const TempUsers = ({ users }: { users: User[] }) => {
             </div>
           )) :
           <div className="p-2">
-            <p id='no-users-msg' className="text-red-500 font-medium text-center">No users found...</p>
+            <p data-testid='no-users-msg' className="text-red-500 font-medium text-center">No users found...</p>
           </div>
         }
 
