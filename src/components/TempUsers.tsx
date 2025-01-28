@@ -9,7 +9,7 @@ import { Button } from './ui/button';
 
 export const TempUsers = ({ users }: { users: User[] }) => {
 
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
 
   async function handleDeleteUsers() {
     setUser(null);
@@ -21,6 +21,8 @@ export const TempUsers = ({ users }: { users: User[] }) => {
     <div>
       <div className="bg-zinc-200x space-y-2 mt-8 p-6 rounded-lg min-w-64">
         <h3 data-testid="user-count" className="text-3xl font-black text-center">Users: {users.length}</h3>
+
+        {user && <p data-testid="auth-email">{user?.email}</p>}
 
         {users.length > 0 ?
           users?.map((user, idx) => (

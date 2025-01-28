@@ -23,7 +23,7 @@ const TempAuthComp = () => {
 
     return (
         <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-black text-center">{t('title')}</h1>
+        <h1 data-testid="intl-title" className="text-3xl font-black text-center">{t('title')}</h1>
 
             {user ?
                 <form action={handleSignOut} className="p-1">
