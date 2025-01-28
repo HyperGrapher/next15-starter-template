@@ -30,6 +30,11 @@ jobs:
       run: npx prisma migrate deploy
     - name: Install Playwright Browsers
       run: pnpm exec playwright install --with-deps
+    - name: Build Next.js app
+      run: pnpm run build
+    - name: Start Next.js app
+      run: |
+        nohup pnpm run start &
     - name: Run Playwright tests
       run: pnpm exec playwright test
     - uses: actions/upload-artifact@v4
