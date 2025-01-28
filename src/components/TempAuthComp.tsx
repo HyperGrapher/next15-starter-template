@@ -5,20 +5,20 @@ import React from 'react'
 import { useUser } from "src/server/auth";
 import { Button } from 'src/components/ui/button';
 import { signOut } from 'src/app/(login)/actions';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 const TempAuthComp = () => {
     const { user, setUser } = useUser();
-    const router = useRouter();
+    // const router = useRouter();
      const t = useTranslations('home');
 
 
     async function handleSignOut() {
         setUser(null);
         await signOut();
-        router.push('/');
+        // router.push('/');
     }
 
     return (
@@ -27,7 +27,7 @@ const TempAuthComp = () => {
 
             {user ?
                 <form action={handleSignOut} className="p-1">
-                    <Button variant={'destructive'} type="submit" className="flex w-full">
+                    <Button data-testid="logout" variant={'destructive'} type="submit" className="flex w-full">
                         <LogOut className="mr-2 h-4 w-4" />
                         <span>Sign out</span>
                     </Button>

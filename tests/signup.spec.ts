@@ -23,7 +23,9 @@ test('Sign up user and signout with redirect to home page', async ({ page }) => 
 
 
 
-    await page.getByRole('button', { name: 'Sign out' }).click();
+    await page.getByTestId('logout').click();
+    await page.waitForURL('http://localhost:3000')
+    await expect(page).toHaveURL('http://localhost:3000');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/Build Your SaaS/);
 });
 

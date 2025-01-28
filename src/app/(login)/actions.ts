@@ -112,6 +112,7 @@ export async function signOut() {
   const user = (await getUser())!;
   await logActivity(user.id, ActivityType.SIGN_OUT);
   (await cookies()).delete('session');
+  redirect('/')
 }
 
 export async function deleteUsers() {
