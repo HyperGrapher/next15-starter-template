@@ -108,11 +108,20 @@ export const signUp = validatedAction(signUpSchema, async (data, _formData) => {
 });
 
 export async function signOut() {
-  console.log();
 
   const user = (await getUser())!;
   await logActivity(user.id, ActivityType.SIGN_OUT);
   (await cookies()).delete('session');
+}
+
+export async function deleteUsers() {
+  (await cookies()).delete('session');
+
+  await db.user.deleteMany({
+    where: {
+      id: { not: '' }
+    }
+  })
 }
 
 const updatePasswordSchema = z
