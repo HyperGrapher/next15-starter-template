@@ -42,6 +42,7 @@ sudo -u postgres psql
 ```sql
 CREATE DATABASE db_name;
 CREATE USER my_user WITH PASSWORD 'password';
+ALTER USER my_user CREATEDB;
 GRANT ALL PRIVILEGES ON DATABASE db_name TO my_user;
 ```
 

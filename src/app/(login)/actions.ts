@@ -65,7 +65,7 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
   const redirectTo = formData.get('redirect') as string | null;
   
 
-  redirect('/testing');
+  redirect('/test');
 });
 
 const signUpSchema = z.object({
@@ -105,7 +105,7 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
     logActivity(createdUser.id, ActivityType.SIGN_UP),
   ]);
 
-  redirect('/testing');
+  redirect('/test');
 });
 
 export async function signOut() {
