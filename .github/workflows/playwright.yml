@@ -16,9 +16,10 @@ jobs:
     - name: Set up PostgreSQL
       uses: harmon758/postgresql-action@v1
       with:
-        postgresql-version: '17'
-        postgres-db: 'test_db'
-        postgres-password: 'password'
+        postgresql version: '14'  # Adjust to your version
+        postgresql db: 'test_db'   # Name of the test database you want to create
+        postgresql user: 'postgres'  # Default PostgreSQL user
+        postgresql password: 'password'  # Password for the 'postgres' user
     - name: Set environment variables
       run: echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/test_db?schema=public" >> $GITHUB_ENV
     - name: Set environment variables 2
