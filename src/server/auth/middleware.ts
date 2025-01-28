@@ -1,12 +1,14 @@
-import { z } from 'zod';
-import { User } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { type z } from 'zod';
+import { type User } from '@prisma/client';
 import { getUser } from 'src/server/db/queries';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 export type ActionState = {
   error?: string;
   success?: string;
-  [key: string]: any; // This allows for additional properties
+  [key: string]: unknown; // This allows for additional properties
 };
 
 type ValidatedActionFunction<S extends z.ZodType<any, any>, T> = (
@@ -31,13 +33,13 @@ export function validatedAction<S extends z.ZodType<any, any>, T>(
   };
 }
 
-type ValidatedActionWithUserFunction<S extends z.ZodType<any, any>, T> = (
+type ValidatedActionWithUserFunction<S extends z.ZodType<unknown, any>, T> = (
   data: z.infer<S>,
   formData: FormData,
   user: User
 ) => Promise<T>;
 
-export function validatedActionWithUser<S extends z.ZodType<any, any>, T>(
+export function validatedActionWithUser<S extends z.ZodType<unknown, any>, T>(
   schema: S,
   action: ValidatedActionWithUserFunction<S, T>
 ) {

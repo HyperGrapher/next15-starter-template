@@ -3,12 +3,12 @@
 import type { User } from '@prisma/client';
 import {
     createContext,
+    use,
     useContext,
-    ReactNode,
-    useState,
     useEffect,
+    useState,
+    type ReactNode,
 } from 'react';
-import { use } from 'react';
 
 type UserContextType = {
     user: User | null;

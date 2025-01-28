@@ -1,5 +1,4 @@
 'use server';
-import { User } from '@prisma/client';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { ActivityType } from 'src/lib/types';
@@ -63,7 +62,7 @@ export const signIn = validatedAction(signInSchema, async (data, _formData) => {
 
   // TODO: redirect user if needed
   // const redirectTo = formData.get('redirect') as string | null;
-  
+
 
   redirect('/test');
 });
@@ -83,7 +82,7 @@ export const signUp = validatedAction(signUpSchema, async (data, _formData) => {
   });
 
   if (existingUser) {
-    return { error: 'Failed to create user. Please try again.', email, password};
+    return { error: 'Failed to create user. Please try again.', email, password };
   }
 
   const passwordHash = await hashPassword(password);
@@ -110,8 +109,8 @@ export const signUp = validatedAction(signUpSchema, async (data, _formData) => {
 
 export async function signOut() {
   console.log();
-  
-  const user = (await getUser()) as User;
+
+  const user = (await getUser())!;
   await logActivity(user.id, ActivityType.SIGN_OUT);
   (await cookies()).delete('session');
 }

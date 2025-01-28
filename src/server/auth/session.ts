@@ -1,7 +1,7 @@
 import { compare, hash } from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
-import { User } from '@prisma/client';
+import { type User } from '@prisma/client';
 import { env } from 'src/lib/env';
 
 const key = new TextEncoder().encode(env.AUTH_SECRET);
@@ -47,7 +47,7 @@ const hoursToExpiry = 1;
 export async function setSession(user: User) {
   const expiresInOneDay = new Date(Date.now() + hoursToExpiry * 60 * 60 * 1000);
   const session: SessionData = {
-    user: { id: user.id! },
+    user: { id: user.id },
     expires: expiresInOneDay.toISOString(),
   };
   const encryptedSession = await signToken(session);

@@ -8,7 +8,7 @@ import { Input } from 'src/components/ui/input';
 import { Label } from 'src/components/ui/label';
 import { Loader2 } from 'lucide-react';
 import { signIn, signUp } from './actions';
-import { ActionState } from 'src/server/auth/middleware';
+import { type ActionState } from 'src/server/auth/middleware';
 import { useTranslations } from 'next-intl';
 
 export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
@@ -49,7 +49,7 @@ export function Login({ mode = 'signin' }: { mode?: 'signin' | 'signup' }) {
                 name="email"
                 type="email"
                 autoComplete="email"
-                defaultValue={state.email}
+                defaultValue={state.email as string}
                 required
                 maxLength={50}
                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-violet-500 focus:outline-hidden focus:ring-violet-500 sm:text-sm"

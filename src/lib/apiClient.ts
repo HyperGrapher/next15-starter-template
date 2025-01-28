@@ -40,6 +40,7 @@ type ApiClient = <Data>(
       }
 
       const response = await target.apply(thisArg, [
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
         `${getBaseUrl()}${String(url)}`,
         nextInit,
       ]);
@@ -48,12 +49,16 @@ type ApiClient = <Data>(
         throw new Error(response.statusText);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const results = await response.json();
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (!results.ok) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
         throw new Error(results.error);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
       return results.data;
     },
   }) as ApiClient;
