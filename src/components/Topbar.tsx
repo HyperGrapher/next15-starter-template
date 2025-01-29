@@ -12,18 +12,18 @@ import {
 } from 'src/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar';
 import { signOut } from 'src/app/(login)/actions';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useUser } from 'src/server/auth';
 
 export function Topbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, setUser } = useUser();
-  const router = useRouter();
+  // const router = useRouter();
 
   async function handleSignOut() {
     setUser(null);
     await signOut();
-    router.push('/');
+    // router.push('/');
   }
 
   return (
