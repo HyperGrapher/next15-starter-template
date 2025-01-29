@@ -9,7 +9,7 @@
 
 ### Postgres installation
 
-```sh
+```bash
 sudo apt update
 sudo apt upgrade
 sudo apt install net-tools # (optional for netstat)
@@ -35,7 +35,7 @@ Make sure .env file is set up correctly (place you own params):
 
 Based on the connection string above, adjust parameters and run commands:
 
-```sh
+```bash
 sudo -u postgres psql
 ```
 
@@ -44,15 +44,14 @@ CREATE DATABASE db_name;
 CREATE USER my_user WITH PASSWORD 'password';
 ALTER USER my_user CREATEDB;
 GRANT ALL PRIVILEGES ON DATABASE db_name TO my_user;
+\q #quit command
 ```
-
-
 
 ### Installing Node with fnm and pnpm
 
 fnm and pnpm are not required but it's nice to have, even in production server.
 
-```sh
+```bash
 sudo apt install unzip # required for bash in the next step
 
 curl -o- https://fnm.vercel.app/install | bash
@@ -73,6 +72,13 @@ pnpm install
 
 ```
 
+### Sync Prisma schema
+
+Again make sure db credentials are correct in .env
+
+```bash
+pnpm db:push
+```
 
 
 
