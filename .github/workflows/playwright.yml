@@ -13,14 +13,10 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-        cache: 'pnpm'  # Enables automatic caching for pnpm dependencies
-    - name: Set up PostgreSQL
-      uses: harmon758/postgresql-action@v1
-      with:
-        postgresql version: '17'
-        postgresql db: 'test_db'
-        postgresql user: 'postgres'
-        postgresql password: 'password'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
     - name: Set environment variables
       run: |
         echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/test_db?schema=public" >> $GITHUB_ENV
@@ -35,7 +31,16 @@ jobs:
           pnpm-${{ runner.os }}-
 
     - name: Install dependencies
-      run: npm install -g pnpm && pnpm install
+      run: pnpm install
+
+    - name: Set up PostgreSQL
+      uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '17'
+        postgresql db: 'test_db'
+        postgresql user: 'postgres'
+        postgresql password: 'password'
+    
 
     - name: Cache Playwright browsers
       uses: actions/cache@v4
@@ -52,13 +57,14 @@ jobs:
     
     - name: Run Prisma migrations
       run: npx prisma db push
-    - name: Install Playwright Browsers
-      run: pnpm exec playwright install --with-deps
+    
     - name: Build Next.js app
       run: pnpm run build
+
     - name: Start Next.js app
       run: |
         nohup pnpm run start &
+
     - name: Run Playwright tests
       run: pnpm exec playwright test
     - uses: actions/upload-artifact@v4
