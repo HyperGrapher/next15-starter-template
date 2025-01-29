@@ -17,6 +17,9 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm
 
+    - name: Get pnpm store path
+      run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
+
     - name: Set environment variables
       run: |
         echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/test_db?schema=public" >> $GITHUB_ENV
@@ -25,7 +28,7 @@ jobs:
     - name: Cache pnpm dependencies
       uses: actions/cache@v4
       with:
-        path: ~/.pnpm-store
+        path: ${{ env.PNPM_STORE_PATH }}
         key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
         restore-keys: |
           pnpm-${{ runner.os }}-
