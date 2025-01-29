@@ -13,6 +13,7 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+        cache: 'pnpm'  # Enables automatic caching for pnpm dependencies
     - name: Set up PostgreSQL
       uses: harmon758/postgresql-action@v1
       with:
@@ -21,11 +22,34 @@ jobs:
         postgresql user: 'postgres'
         postgresql password: 'password'
     - name: Set environment variables
-      run: echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/test_db?schema=public" >> $GITHUB_ENV
-    - name: Set environment variables 2
-      run: echo "AUTH_SECRET='YOUR_AUTH_SECRET'" >> $GITHUB_ENV
+      run: |
+        echo "DATABASE_URL=postgresql://postgres:password@localhost:5432/test_db?schema=public" >> $GITHUB_ENV
+        echo "AUTH_SECRET='YOUR_AUTH_SECRET'" >> $GITHUB_ENV
+    
+    - name: Cache pnpm dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.pnpm-store
+        key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          pnpm-${{ runner.os }}-
+
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
+
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('package.json') }}
+        restore-keys: |
+          playwright-${{ runner.os }}-
+            
+    - name: Install Playwright Browsers
+      run: |
+        export PLAYWRIGHT_BROWSERS_PATH=~/.cache/ms-playwright
+        pnpm exec playwright install --with-deps
+    
     - name: Run Prisma migrations
       run: npx prisma db push
     - name: Install Playwright Browsers
