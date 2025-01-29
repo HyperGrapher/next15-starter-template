@@ -6,6 +6,7 @@ import { deleteUsers } from 'src/app/(login)/actions';
 import { useUser } from 'src/server/auth';
 import { Delete, } from 'lucide-react';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 export const TempUsers = ({ users }: { users: User[] }) => {
 
@@ -20,14 +21,17 @@ export const TempUsers = ({ users }: { users: User[] }) => {
   return (
     <div>
       <div className="bg-zinc-200x space-y-2 mt-8 p-6 rounded-lg min-w-64">
-        <h3 data-testid="user-count" className="text-3xl font-black text-center">Users: {users.length}</h3>
+        {user && <div className='max-w-fit mx-auto text-center flex items-center'>
+          <div className='font-bold'>Auth user: {" "} </div>
+          <p className=' text-green-500 text-center' data-testid="auth-email">{user?.email}</p>
+        </div>}
+        <h3 data-testid="user-count" className="text-1xl font-black text-center">Users: {users.length}</h3>
 
-        {user && <p data-testid="auth-email">{user?.email}</p>}
 
         {users.length > 0 ?
           users?.map((user, idx) => (
             <div key={user.id} className="p-2 rounded-md">
-              <p data-testid={`user-${idx}`}>{user.email}</p>
+              <Link className='underline text-blue-500' href={`/users/${user.id}`} data-testid={`user-${idx}`}>{user.email}</Link>
             </div>
           )) :
           <div className="p-2">
