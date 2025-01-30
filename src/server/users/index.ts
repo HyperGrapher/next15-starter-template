@@ -7,7 +7,7 @@ import { redirect, RedirectType } from 'next/navigation';
 
 
 const deleteUserSchema = z.object({
-    id: z.string().min(20).max(28),
+    id: z.string().min(20).max(38),
 });
 
 export const deleteUserAction = validatedActionWithUser(deleteUserSchema, async (data, _formData) => {

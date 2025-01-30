@@ -47,7 +47,7 @@ const TempUserDelete = ({ id }: { id: string }) => {
 
             <form action={formAction}>
                 <div className='flex flex-col gap-4 max-w-64 mx-auto'>
-                    <input type='hidden' name='id' value={id + "--nope-cannot-delete"} />
+                    <input type='hidden' name='id' value={id + "--no"} />
                     <Button variant={'destructive'} type='submit' className='w-full'>
                         Fails to Delete
                     </Button>
