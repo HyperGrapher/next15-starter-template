@@ -13,7 +13,7 @@ test('Sign up link', async ({ page }) => {
   // Click the sign up link.
   await page.getByRole('link', { name: 'Sign Up' }).click();
 
-  await expect(page).toHaveURL('http://localhost:3000/sign-up')
+  await expect(page).toHaveURL('http://localhost:3000/register')
 
 
   // Expects page to have a heading with the name:

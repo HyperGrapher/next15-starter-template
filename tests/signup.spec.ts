@@ -46,7 +46,7 @@ test('Test user login', async ({ page }) => {
     await page.getByRole('link', { name: 'Sign Up' }).click();
     await page.getByRole('link', { name: 'Sign in to existing account' }).click();
 
-    await expect(page).toHaveURL('http://localhost:3000/sign-in');
+    await expect(page).toHaveURL('http://localhost:3000/login');
 
     await page.getByRole('textbox', { name: 'Email' }).click();
     await page.getByRole('textbox', { name: 'Email' }).fill('test@email.com');

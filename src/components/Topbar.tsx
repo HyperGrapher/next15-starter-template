@@ -35,6 +35,12 @@ export function Topbar() {
         </Link>
         <div className="flex items-center space-x-4">
           <Link
+            href="/dashboard"
+            className="text-sm font-medium hover:text-gray-300"
+          >
+            Dashboard
+          </Link>
+          <Link
             href="/pricing"
             className="text-sm font-medium hover:text-gray-300"
           >
@@ -82,7 +88,7 @@ export function Topbar() {
               asChild
               className="rounded-full bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
             >
-              <Link href="/sign-up">Sign Up</Link>
+              <Link href="/register">Sign Up</Link>
             </Button>
           )}
         </div>

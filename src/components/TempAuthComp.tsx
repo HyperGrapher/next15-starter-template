@@ -33,8 +33,8 @@ const TempAuthComp = () => {
                 : (
 
                     <div className="flex gap-4">
-                        <Link className="mt-4 bg-green-600 text-white px-2 py-1 rounded" href="/sign-in">Sign In</Link>
-                        <Link className="mt-4 bg-violet-600 text-white px-2 py-1 rounded" href="/sign-up">Sign Up</Link>
+                        <Link className="mt-4 bg-green-600 text-white px-2 py-1 rounded" href="/login">Sign In</Link>
+                        <Link className="mt-4 bg-violet-600 text-white px-2 py-1 rounded" href="/register">Sign Up</Link>
                     </div>
                 )
             }

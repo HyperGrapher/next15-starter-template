@@ -5,7 +5,8 @@ import TempUserDelete from 'src/components/TempUserDelete';
 interface PageProps {
   params: {
     userid: string;
-  }
+  };
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export default async function UserPage({ params }: PageProps) {
@@ -25,7 +26,6 @@ export default async function UserPage({ params }: PageProps) {
   );
 }
 
-// Optionally, add generateMetadata for better SEO
 export async function generateMetadata({ params }: PageProps) {
   const user = await getUserById(params.userid);
   
