@@ -59,10 +59,7 @@ export function Topbar() {
                 <Avatar className="size-9 cursor-pointer">
                   <AvatarImage alt={user.name || ''} />
                   <AvatarFallback>
-                    {user.email
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
+                    {user.email[0]}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>

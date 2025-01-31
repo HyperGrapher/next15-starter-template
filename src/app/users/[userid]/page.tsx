@@ -1,16 +1,19 @@
 import { getUserById } from 'src/server/db/queries';
 import { notFound } from 'next/navigation';
 import TempUserDelete from 'src/components/TempUserDelete';
+import { Metadata } from 'next';
 
-interface PageProps {
-  params: {
+type Props = {
+  params: Promise<{
     userid: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
+  }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+  // searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 
-export default async function UserPage({ params }: PageProps) {
-  const user = await getUserById(params.userid);
+}
+export default async function UserPage({ params }: Props) {
+  const { userid } = await params;
+  const user = await getUserById(userid);
   
   if (!user) {
     notFound();
@@ -19,15 +22,16 @@ export default async function UserPage({ params }: PageProps) {
   return (
     <div className=''>
       <h1 className='text-zinc-200 text-4xl text-center mt-8'>{user?.email}</h1>
-      <p className='text-zinc-400 text-center mt-8'>{params.userid}</p>
+      <p className='text-zinc-400 text-center mt-8'>{userid}</p>
 
-      <TempUserDelete id={params.userid} />
+      <TempUserDelete id={userid} />
     </div>
   );
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const user = await getUserById(params.userid);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { userid } = await params;
+  const user = await getUserById(userid);
   
   if (!user) {
     return {
