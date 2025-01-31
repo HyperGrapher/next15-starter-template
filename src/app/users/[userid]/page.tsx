@@ -1,20 +1,19 @@
 import { getUserById } from 'src/server/db/queries';
 import { notFound } from 'next/navigation';
 import TempUserDelete from 'src/components/TempUserDelete';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{
     userid: string;
   }>;
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
-  // searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 
 }
 export default async function UserPage({ params }: Props) {
-  const { userid } = await params;
+  const userid = (await params).userid
   const user = await getUserById(userid);
-  
+
   if (!user) {
     notFound();
   }
@@ -30,9 +29,9 @@ export default async function UserPage({ params }: Props) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { userid } = await params;
+  const userid = (await params).userid
   const user = await getUserById(userid);
-  
+
   if (!user) {
     return {
       title: 'User Not Found',
