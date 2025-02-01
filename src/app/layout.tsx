@@ -8,6 +8,7 @@ import { getUser } from 'src/server/db/queries';
 import "src/styles/globals.css";
 import { Topbar } from "src/components/Topbar";
 
+// https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 export const metadata: Metadata = {
   title: 'Next.js SaaS Starter',
   description: 'Get started quickly with Next.js',
