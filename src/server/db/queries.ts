@@ -1,3 +1,4 @@
+import 'server-only'
 import { db } from './index';
 import { cookies } from 'next/headers';
 import { verifyToken } from 'src/server/auth/session';
