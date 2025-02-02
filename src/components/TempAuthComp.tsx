@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 
 const TempAuthComp = () => {
     const { user, setUser } = useUser();
-     const t = useTranslations('home');
+    const t = useTranslations('home');
 
 
     async function handleSignOut() {
@@ -19,8 +19,8 @@ const TempAuthComp = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center">
-        <h1 data-testid="intl-title" className="text-3xl font-black text-center">{t('title')}</h1>
+        <div className="flex flex-col items-center justify-center ">
+            <h1 data-testid="intl-title" className="text-3xl font-black text-center">{t('title')}</h1>
 
             {user ?
                 <form action={handleSignOut} className="p-1">
@@ -32,9 +32,15 @@ const TempAuthComp = () => {
 
                 : (
 
-                    <div className="flex gap-4">
-                        <Link className="mt-4 bg-green-600 text-white px-2 py-1 rounded" href="/login">Sign In</Link>
-                        <Link className="mt-4 bg-violet-600 text-white px-2 py-1 rounded" href="/register">Sign Up</Link>
+                    <div className="flex gap-4 mt-4">
+
+                        <Button className='bg-green-500 hover:bg-green-600' variant={'default'} asChild>
+                            <Link href="/login">Sign In</Link>
+                        </Button>
+
+                        <Button className='text-sky-100' variant={'default'} asChild>
+                            <Link href="/register">Sign Up</Link>
+                        </Button>
                     </div>
                 )
             }
